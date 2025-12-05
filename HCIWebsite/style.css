@@ -235,3 +235,65 @@ nav a.active {
     background: #555;
     color: white;
 }
+
+/* ========================================================
+   ACCESSIBILITY SETTINGS – GLOBAL STYLES
+   ======================================================== */
+
+/* Large text */
+body.large-text { 
+    font-size: 18px;
+    line-height: 1.7;
+  }
+  
+  /* High contrast */
+  body.high-contrast {
+    background: #000 !important;
+    color: #fff !important;
+  }
+  
+  body.high-contrast header,
+  body.high-contrast nav,
+  body.high-contrast .container,
+  body.high-contrast .settings-container {
+    background: #000 !important;
+    color: #fff !important;
+    border-color: #fff !important;
+  }
+  
+  body.high-contrast a {
+    color: #ffeb3b !important;
+  }
+  
+  /* Easy-read mode (extra spacing) */
+  body.easy-read {
+    letter-spacing: 0.04em;
+    line-height: 1.8;
+  }
+  
+  /* Dark mode (more subtle than high contrast) */
+  body.dark-mode {
+    background: #1a1a1a;
+    color: #e6e6e6;
+  }
+  
+  body.dark-mode .container,
+  body.dark-mode nav,
+  body.dark-mode header {
+    background: #222;
+  }
+  
+  /* Dyslexia-friendly font (OpenDyslexic recommended, fallback included) */
+  body.dyslexia-font {
+    font-family: "OpenDyslexic", "Arial", sans-serif;
+  }
+  
+  /* Serif font mode */
+  body.serif-font {
+    font-family: "Georgia", "Times New Roman", serif;
+  }
+  
+  /* Sans-serif font mode */
+  body.sans-font {
+    font-family: system-ui, "Segoe UI", Arial, sans-serif;
+  }
