@@ -1,48 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" href="style.css">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Search</title>
-  
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Search</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    .search-container {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      border-radius: 6px;
+      border: 1px solid #999;
+      font-size: 16px;
+    }
+
+    #results p {
+      background: #f5f7ff;
+      padding: 12px;
+      border-radius: 6px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    #results a {
+      color: #003366;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 18px;
+    }
+
+    #results a:hover {
+      text-decoration: underline;
+    }
+
+    mark {
+      background: yellow;
+      padding: 2px 4px;
+      border-radius: 3px;
+    }
+  </style>
 </head>
 
 <body>
 
-    <header>
-        <h1>The HMS Gloucester</h1>
-        <p>Come and learn about the HMS Gloucester!</p>
-    </header>
+<header>
+  <h1>The HMS Gloucester</h1>
+  <p>Come and learn about the HMS Gloucester!</p>
+</header>
 
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="timeline.html">Timeline of Events</a>
-        <a href="crew.html">The Crew</a>
-        <a href="discovery.html">Discovery of the Wreck</a>
-        <a href="search.html">Search</a>
-        <a href="settings.html">Settings</a>
+<nav>
+  <a href="home.html">Home</a>
+  <a href="timeline.html">Timeline of Events</a>
+  <a href="crew.html">The Crew</a>
+  <a href="discovery.html">Discovery of the Wreck</a>
+  <a href="search.html">Search</a>
+  <a href="settings.html">Settings</a>
+</nav>
 
-    </nav>
+<div class="search-container">
+  <h2>Search the Website</h2>
+  <p>Type a word or phrase to search across all pages.</p>
 
-    <div class="hero">
-        <h2>rewrwef</h2>
-        <p>efwiufu</p>
-    </div>
+  <input type="text" id="searchInput" placeholder="Search..." oninput="performSearch()">
 
-    <div class="section">
-        <h2>About Us</h2>
-        <p>Write something about your website or company here.</p>
-    </div>
+  <div id="results"></div>
+</div>
 
-    <div class="section">
-        <h2>Services</h2>
-        <p>Description of services or features.</p>
-    </div>
+<script>
+  // Pages to search
+  const pagesToSearch = [
+    { url: "home.html", title: "Home" },
+    { url: "timeline.html", title: "Timeline of Events" },
+    { url: "crew.html", title: "The Crew" },
+    { url: "discovery.html", title: "Discovery of the Wreck" }
+  ];
 
-    <footer>
-        <p>&copy; 2025 My Website. All rights reserved.</p>
-    </footer>
+  const pageTextCache = {};
+
+  async function loadPages() {
+    for (let page of pagesToSearch) {
+      try {
+        const response = await fetch(page.url);
+        const html = await response.text();
+
+        // Clean HTML into readable text
+        let cleaned = html
+          .replace(/<script[\s\S]*?<\/script>/gi, "")
+          .replace(/<style[\s\S]*?<\/style>/gi, "")
+          .replace(/<!--[\s\S]*?-->/g, "")
+          .replace(/<[^>]+>/g, " ")
+          .replace(/\s+/g, " ");
+
+        pageTextCache[page.url] = cleaned.toLowerCase();
+
+      } catch (err) {
+        console.error("Could not load:", page.url);
+      }
+    }
+  }
+
+  loadPages();
+
+  /* ============================
+     SEARCH FUNCTION
+     ============================ */
+
+  function performSearch() {
+    const query = document.getElementById("searchInput").value.toLowerCase();
+    const resultsDiv = document.getElementById("results");
+    resultsDiv.innerHTML = "";
+
+    if (query.length < 2) {
+      resultsDiv.innerHTML = "<p>Please enter at least 2 characters.</p>";
+      return;
+    }
+
+    let results = [];
+
+    for (let page of pagesToSearch) {
+      const text = pageTextCache[page.url];
+
+      if (text.includes(query)) {
+        const index = text.indexOf(query);
+        const start = Math.max(0, index - 60);
+        const end = Math.min(text.length, index + 60);
+        let preview = text.substring(start, end);
+
+        const regex = new RegExp(query, "gi");
+        preview = preview.replace(regex, match => `<mark>${match}</mark>`);
+
+        results.push({
+          page: page.title,
+          url: page.url,
+          preview: preview
+        });
+      }
+    }
+
+    if (results.length === 0) {
+      resultsDiv.innerHTML = "<p>No results found.</p>";
+      return;
+    }
+
+    for (let match of results) {
+      resultsDiv.innerHTML += `
+        <p>
+          <a href="${match.url}">${match.page}</a><br>
+          ${match.preview}...
+        </p>
+      `;
+    }
+  }
+</script>
 
 </body>
 </html>
