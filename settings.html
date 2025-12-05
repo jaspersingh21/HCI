@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Settings</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="settings-page">
+
+  <header>
+    <h1>Settings</h1>
+    <p>Customise your viewing experience</p>
+  </header>
+
+  <nav>
+    <a href="home.html">Home</a>
+    <a href="timeline.html">Timeline of Events</a>
+    <a href="crew.html">The Crew</a>
+    <a href="discovery.html">Discovery of the Wreck</a>
+    <a href="search.html">Search</a>
+    <a href="settings.html" class="active">Settings</a>
+  </nav>
+
+  <div class="container settings-container">
+
+    <h2>Accessibility & Appearance Settings</h2>
+
+    <!-- ======================
+         TEXT SIZE
+         ====================== -->
+    <h3>Text Size</h3>
+    <label><input type="radio" id="text-normal" name="textSize" checked> Normal</label><br>
+    <label><input type="radio" id="text-large" name="textSize"> Large Text</label>
+
+    <!-- ======================
+         VISIBILITY OPTIONS
+         ====================== -->
+    <h3>Visibility Options</h3>
+    <label><input type="checkbox" id="highContrastToggle"> High Contrast Mode</label><br>
+    <label><input type="checkbox" id="darkModeToggle"> Dark Mode</label><br>
+    <label><input type="checkbox" id="easyReadToggle"> Easy-Read Spacing</label><br>
+
+    <!-- ======================
+         FONT OPTIONS
+         ====================== -->
+    <h3>Font Settings</h3>
+    <label><input type="checkbox" id="dyslexiaToggle"> Dyslexia-Friendly Font</label><br><br>
+
+    <label for="fontSelect"><strong>Font Style:</strong></label><br>
+    <select id="fontSelect" style="padding:8px; margin-top:5px;">
+      <option value="sans">Sans-serif (Default)</option>
+      <option value="serif">Serif</option>
+    </select>
+
+    <br><br>
+
+    <!-- ======================
+         RESET BUTTON
+         ====================== -->
+    <button id="resetSettings" style="padding:10px 18px; margin-top:10px;">
+      Reset All Settings
+    </button>
+
+  </div>
+
+  <footer>
+    <p>&copy; 2025 HMS Gloucester Project. All rights reserved.</p>
+  </footer>
+
+  <script src="settings.js"></script>
+
+</body>
+</html>

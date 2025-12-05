@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Discovery of the Wreck</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* Page-specific styling */
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .image-box {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .image-box img {
+      max-width: 100%;
+      border-radius: 8px;
+    }
+
+    .timeline {
+      margin-top: 30px;
+      padding-left: 20px;
+      border-left: 3px solid #002b5c;
+    }
+
+    .timeline-entry {
+      margin-bottom: 20px;
+    }
+
+    .interactive {
+      margin-top: 40px;
+      background: #eef3ff;
+      padding: 15px;
+      border-radius: 8px;
+    }
+
+    /* Fade animation */
+    @keyframes fadeInSmooth {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeOutSmooth {
+      from { opacity: 1; }
+      to   { opacity: 0; }
+    }
+
+    #factBox {
+      margin-top: 15px;
+      padding: 15px;
+      background: #dfe8ff;
+      border-radius: 8px;
+      display: none;
+      min-height: 50px;
+    }
+
+    /* Brass-style buttons */
+    .fact-button {
+      background: linear-gradient(180deg, #c9a23b, #b38728);
+      color: #fff;
+      padding: 12px 24px;
+      border: 2px solid #8a6d1e;
+      border-radius: 6px;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+      text-shadow: 1px 1px 2px #654;
+      transition: 0.3s ease;
+      margin: 6px;
+    }
+
+    .fact-button:hover {
+      background: linear-gradient(180deg, #d4b04e, #a37620);
+      transform: scale(1.05);
+    }
+
+    /* MAP STYLING */
+    .map-container {
+      position: relative;
+      max-width: 800px;
+      margin: 40px auto;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    .map-image {
+      width: 100%;
+      display: block;
+    }
+
+    .map-marker {
+      width: 20px;
+      height: 20px;
+      background: red;
+      border: 3px solid white;
+      border-radius: 50%;
+      position: absolute;
+      cursor: pointer;
+      animation: pulse 1.5s infinite ease-out;
+      z-index: 10;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(2); opacity: 0; }
+    }
+
+    .map-info {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(255,255,255,0.95);
+      padding: 20px;
+      border-radius: 10px;
+      width: 300px;
+      display: none;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      z-index: 20;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 8px;
+      right: 12px;
+      cursor: pointer;
+      font-size: 20px;
+      color: #333;
+      font-weight: bold;
+    }
+
+    .close-btn:hover {
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>The HMS Gloucester</h1>
+    <p>Come and learn about the HMS Gloucester!</p>
+  </header>
+
+  <nav>
+    <a href="home.html">Home</a>
+    <a href="timeline.html">Timeline of Events</a>
+    <a href="crew.html">The Crew</a>
+    <a href="discovery.html">Discovery of the Wreck</a>
+    <a href="search.html">Search</a>
+    <a href="settings.html">Settings</a>
+  </nav>
+
+  <div class="container">
+    <h2>Discovery of the HMS Gloucester Wreck</h2>
+    <p>
+      After lying undiscovered for over 300 years beneath the waters off the Norfolk coast,
+      the wreck of the HMS <strong>Gloucester</strong> was finally located in 2007 by a dedicated
+      team of researchers, divers, and historians. The ship, which ran aground in 1682 while
+      carrying the future King James II, became one of the most significant maritime finds
+      in British history.
+    </p>
+
+    <div class="image-box">
+      <img src="ship.jpeg" alt="Underwater wreckage of HMS Gloucester" />
+      <p><em>The Wreck of the Gloucester off Yarmouth, 6 May 1682, by Johan Danckerts, c. 1682</em></p>
+    </div>
+
+    <h2>Key Moments In The Discovery</h2>
+
+    <div class="timeline">
+      <div class="timeline-entry">
+        <h3>2007 – The Wreck Is Found!</h3>
+        <p>
+          After a four-year search that covered around 5,000 nautical miles, the wreck was located by Norfolk divers
+          Julian and Lincoln Barnwell, along with their dive partner James Little. The team first spotted several
+          large cannons on the seabed, which signalled a major wreck.
+        </p>
+      </div>
+
+      <div class="timeline-entry">
+        <h3>2012 – Confirmation</h3>
+        <p>
+          In 2012, the ship’s bell (dated 1681) was recovered. This confirmed 100% that the wreck was the
+          HMS Gloucester. Additional discoveries such as clay pipes, bottles, navigational tools, and personal items
+          proved this further.
+        </p>
+      </div>
+
+      <div class="timeline-entry">
+        <h3>2012–2021 – Research </h3>
+        <p>
+          Divers and archaeologists carried out extensive documentation of the site. Over 144 artefacts were
+          recovered from two wooden chests, showing both personal and domestic items from life onboard. 
+          Institutions such as the Norfolk Museums Service and the University of East Anglia supported long-term
+          conservation and research of the wreckage.
+        </p>
+      </div>
+
+      <div class="timeline-entry">
+        <h3>June 2022 – Public Announcement</h3>
+        <p>
+          The discovery was announced publicly after measures were taken to protect the site, as it lied in international waters, and complete initial
+          archaeological work. Historians praised the wreck as one of the most significant maritime finds since the
+          Mary Rose in 1982. 
+        </p>
+      </div>
+    </div>
+
+    <!-- MAP -->
+    <h2>Discover The Wreckage Map!</h2>
+    <p>Explore the approximate location where the HMS Gloucester was discovered off the Norfolk coast. Click the Flashing button for more information.</p>
+
+    <div class="map-container">
+      <img src="wreckmap.png" alt="Nautical Map of Norfolk Coast" class="map-image">
+
+      <div class="map-marker" onclick="toggleMapInfo()" style="top: 43%; left: 78%;"></div>
+
+      <div id="mapInfo" class="map-info">
+        <span class="close-btn" onclick="toggleMapInfo()">✖</span>
+        <h3>Wreck Discovery Site</h3>
+        <p>
+          The HMS Gloucester wreck was discovered around 28 miles off the Norfolk coast,
+          lying partially buried in sand. Shifting seabeds and poor visibility made it
+          extremely hard to locate for over 300 years.
+        </p>
+      </div>
+    </div>
+
+    <!-- FACTS -->
+    <div class="interactive">
+      <h2>Interactive: Learn a Fact</h2>
+      <p>Click a button to explore facts about the discovery!</p>
+
+      <button class="fact-button" onclick="prevFact()">← Previous</button>
+      <button class="fact-button" onclick="nextFact()">Next →</button>
+
+      <div id="factBox"></div>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>&copy; 2025 HMS Gloucester Project. All rights reserved.</p>
+  </footer>
+
+  <script>
+
+    let facts = [
+      "The exact location of the wreck was kept secret for 15 years to protect it from treasure hunters.",
+      "Divers found unopened wine bottles with intact seals from the 17th century.",
+      "Hundreds on board did not survive the sinking, including many nobles and high class citizens.",
+      "Artifacts that were recovered included shoes, spectacles, navigational tools, and personal belongings.",
+      "The wreck lies around 28 miles off the Norfolk coast, partially buried in sand."
+    ];
+
+    let factIndex = 0;
+
+    function updateFact(text) {
+      const box = document.getElementById('factBox');
+      box.style.display = 'block';
+      box.style.animation = 'fadeOutSmooth 0.3s forwards';
+
+      setTimeout(() => {
+        box.textContent = text;
+        box.style.animation = 'fadeInSmooth 0.4s ease-out';
+      }, 300);
+    }
+
+    function nextFact() {
+      updateFact(facts[factIndex]);
+      factIndex = (factIndex + 1) % facts.length;
+    }
+
+    function prevFact() {
+      factIndex = (factIndex - 1 + facts.length) % facts.length;
+      updateFact(facts[factIndex]);
+    }
+
+    function toggleMapInfo() {
+      const info = document.getElementById("mapInfo");
+      info.style.display = info.style.display === "block" ? "none" : "block";
+    }
+  </script>
+
+<script src="settings.js"></script>
+
+</body>
+</html>
