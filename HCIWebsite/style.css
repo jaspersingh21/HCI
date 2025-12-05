@@ -1,10 +1,11 @@
+
         body {
             margin: 0;
             font-family: Arial, sans-serif;
         }
 
         header {
-            background-color: #333;
+            background-color: #4f4f4f;
             padding: 20px;
             color: white;
             text-align: center;
@@ -28,6 +29,13 @@
             text-align: center;
         }
 
+        .hero img {
+        width: 50%;     /* Makes the image half the page width */
+        height: auto;   /* Keeps correct proportions */
+        display: block;
+        margin: 0 auto; /* Center the image */
+    }
+
         .section {
             padding: 40px 20px;
         }
@@ -39,64 +47,191 @@
             text-align: center;
         }
 
-/* ========================================================
-   ACCESSIBILITY SETTINGS – GLOBAL STYLES
-   ======================================================== */
+        .section {
+        width: 50%;              
+        margin: 40px auto;        
+        padding: 30px;            
+        border: 2px solid #cccccc;   
+        border-radius: 25px;   
+        background-color: #f0f0f0;
+        
+        }
 
-/* Large text */
-body.large-text { 
-    font-size: 18px;
-    line-height: 1.7;
-  }
-  
-  /* High contrast */
-  body.high-contrast {
-    background: #000 !important;
-    color: #fff !important;
-  }
-  
-  body.high-contrast header,
-  body.high-contrast nav,
-  body.high-contrast .container,
-  body.high-contrast .settings-container {
-    background: #000 !important;
-    color: #fff !important;
-    border-color: #fff !important;
-  }
-  
-  body.high-contrast a {
-    color: #ffeb3b !important;
-  }
-  
-  /* Easy-read mode (extra spacing) */
-  body.easy-read {
-    letter-spacing: 0.04em;
-    line-height: 1.8;
-  }
-  
-  /* Dark mode (more subtle than high contrast) */
-  body.dark-mode {
-    background: #1a1a1a;
-    color: #e6e6e6;
-  }
-  
-  body.dark-mode .container,
-  body.dark-mode nav,
-  body.dark-mode header {
-    background: #222;
-  }
-  
-  /* Dyslexia-friendly font (OpenDyslexic recommended, fallback included) */
-  body.dyslexia-font {
-    font-family: "OpenDyslexic", "Arial", sans-serif;
-  }
-  
-  /* Serif font mode */
-  body.serif-font {
-    font-family: "Georgia", "Times New Roman", serif;
-  }
-  
-  /* Sans-serif font mode */
-  body.sans-font {
-    font-family: system-ui, "Segoe UI", Arial, sans-serif;
-  }
+/* Timeline container */
+.timeline {
+    position: relative;
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* Vertical line down the middle */
+.timeline::after {
+    content: "";
+    position: absolute;
+    width: 4px;
+    background: #999;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%); /* perfect center */
+}
+
+/* Event boxes */
+.event {
+    position: relative;
+    width: 45%;               /* smaller than 50% so it doesn't cross the line */
+    padding: 20px 20px;
+    box-sizing: border-box;
+}
+
+/* Left events */
+.event.left {
+    left: 0;
+    text-align: right;
+}
+
+/* Right events */
+.event.right {
+    left: 55%; /* offset so boxes start just after the line */
+    text-align: left;
+}
+
+/* The circle (dot) for each event */
+.event::before {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: white;
+    border: 4px solid #444;
+    border-radius: 50%;
+    top: 30px;
+    left: 50%;                 /* always centered on the line */
+    transform: translateX(-50%);
+    z-index: 2;
+}
+
+/* Event content box */
+.event-box {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+}
+
+/* Titles */
+.event-box h3 {
+    margin-top: 0;
+    color: #444;
+}
+
+/* Responsive: stack events on mobile */
+@media (max-width: 800px) {
+    .event,
+    .event.left,
+    .event.right {
+        width: 100%;
+        left: 0;
+        text-align: left;
+        padding-left: 40px; /* space for the dot */
+    }
+
+    .event::before {
+        left: 20px;
+        transform: none;
+        top: 28px;
+    }
+}
+
+
+.timeline-img {
+    width: 100%;
+    max-width: 260px;   
+    height: auto;
+    display: block;
+    margin: 0 auto 12px auto;  
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    object-fit: cover;   
+}
+
+
+.crew-hero {
+    background: url('images/ship-bg.jpg') center/cover no-repeat;
+    padding: 80px 20px;
+    text-align: center;
+    color: white;
+}
+
+.crew-hero h2 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    text-shadow: 0 3px 6px rgba(0,0,0,0.4);
+    color: black;
+}
+
+.crew-hero p {
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+    color: black;
+}
+
+.crew-section {
+    padding: 40px 20px;
+    max-width: 1100px;
+    margin: auto;
+}
+
+.crew-section h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2rem;
+    color: #333;
+}
+
+.crew-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+}
+
+.crew-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    padding-bottom: 20px;
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.crew-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.crew-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;  
+    border-radius: 12px 12px 0 0;
+}
+
+.crew-card h3 {
+    margin: 15px 0 5px;
+    font-size: 1.3rem;
+    color: #333;
+}
+
+.crew-card p {
+    font-size: 1rem;
+    padding: 0 15px;
+    color: #555;
+}
+
+nav a.active {
+    background: #555;
+    color: white;
+}
