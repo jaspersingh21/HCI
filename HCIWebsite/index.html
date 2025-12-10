@@ -5,7 +5,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home Page</title>
-  
 </head>
 
 <body>
@@ -21,12 +20,11 @@
         <a href="discovery.html">Discovery of the Wreck</a>
         <a href="search.html">Search</a>
         <a href="settings.html">Settings</a>
-
     </nav>
 
     <div class="hero">
         <h1> Come and learn about the HMS Gloucester!</h1>
-    <img src="images/gloucester.jpg" alt="Gloucester Image">
+        <img src="images/gloucester.jpg" alt="Gloucester Image">
     </div>
 
     <div class="section">
@@ -50,12 +48,175 @@
         <iframe width="560" height="315" src="https://www.youtube.com/embed/MXgAp8wdNkE?si=e9LHiu28cMqiBTny" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </div>
 
+    <!-- ========================
+         QUIZ SECTION (UPDATED)
+         ======================== -->
+    <div class="section">
+        <h2>Test Your Knowledge!</h2>
+        <p>Answer each question by typing A, B or C. Press Enter or click Next.</p>
+
+        <div id="quizBox" style="background:#eef3ff; padding:20px; border-radius:10px;">
+
+            <!-- Progress dots -->
+            <div id="progressDots" style="text-align:center; margin-bottom:15px;">
+                <!-- Filled dynamically -->
+            </div>
+
+            <p id="quizQuestion" style="font-size:18px; font-weight:bold;"></p>
+
+            <p id="quizChoices"></p>
+
+            <input type="text" id="quizInput" maxlength="1" placeholder="A, B or C"
+                style="width:60px; padding:6px; text-align:center; font-weight:bold; border:2px solid #002b5c; border-radius:5px;">
+
+            <div id="quizFeedback" style="font-size:40px; height:50px; margin-top:10px;"></div>
+
+            <button id="nextBtn" style="padding:10px 20px; margin-top:10px; display:none;">Next</button>
+
+            <p id="finalScore" style="margin-top:15px; font-weight:bold;"></p>
+
+            <!-- TRY AGAIN BUTTON -->
+            <button id="retryBtn" style="padding:10px 20px; margin-top:10px; display:none;">Try Again</button>
+
+        </div>
+    </div>
+
     <footer>
         <p>&copy; 2025 My Website. All rights reserved.</p>
     </footer>
 
-<script src="settings.js"></script>
-    
+    <script src="settings.js"></script>
+
+    <!-- ========================
+         QUIZ SCRIPT (UPDATED)
+         ======================== -->
+    <script>
+    const quizData = [
+        {
+            question: "In what year did the HMS Gloucester sink?",
+            choices: "A) 1679 B) 1682 C) 1690",
+            answer: "B"
+        },
+        {
+            question: "Who was the future king aboard the Gloucester?",
+            choices: "A) Charles II B) James, Duke of York C) William III",
+            answer: "B"
+        },
+        {
+            question: "Where was the wreck discovered?",
+            choices: "A) Off the Norfolk coast B) Near Portsmouth C) In the Thames Estuary",
+            answer: "A"
+        }
+    ];
+
+    let current = 0;
+    let score = 0;
+
+    const qEl = document.getElementById("quizQuestion");
+    const cEl = document.getElementById("quizChoices");
+    const inputEl = document.getElementById("quizInput");
+    const feedbackEl = document.getElementById("quizFeedback");
+    const nextBtn = document.getElementById("nextBtn");
+    const finalEl = document.getElementById("finalScore");
+    const dotsEl = document.getElementById("progressDots");
+    const retryBtn = document.getElementById("retryBtn");
+
+    function fadeIn(element) {
+        element.style.opacity = 0;
+        element.style.transition = "opacity 0.4s ease";
+        setTimeout(() => { element.style.opacity = 1; }, 10);
+    }
+
+    function updateDots() {
+        dotsEl.innerHTML = "";
+
+        for (let i = 0; i < quizData.length; i++) {
+            const dot = document.createElement("span");
+            dot.style.display = "inline-block";
+            dot.style.width = "12px";
+            dot.style.height = "12px";
+            dot.style.margin = "0 5px";
+            dot.style.borderRadius = "50%";
+            dot.style.background = i === current ? "#002b5c" : "#a0b4d4";
+            dot.style.transition = "background 0.3s ease";
+            dotsEl.appendChild(dot);
+        }
+    }
+
+    function loadQuestion() {
+        const q = quizData[current];
+
+        updateDots();
+
+        qEl.textContent = q.question;
+        cEl.textContent = q.choices;
+        inputEl.value = "";
+        inputEl.style.display = "inline-block";
+        feedbackEl.textContent = "";
+        nextBtn.style.display = "none";
+        retryBtn.style.display = "none";
+        finalEl.textContent = "";
+
+        fadeIn(document.getElementById("quizBox"));
+    }
+
+    function checkAnswer() {
+        const user = inputEl.value.trim().toUpperCase();
+        const correct = quizData[current].answer;
+
+        if (!["A", "B", "C"].includes(user)) {
+            feedbackEl.style.color = "red";
+            feedbackEl.textContent = "⚠ Enter A, B, or C only";
+            return;
+        }
+
+        if (user === correct) {
+            score++;
+            feedbackEl.style.color = "green";
+            feedbackEl.textContent = "✔";
+        } else {
+            feedbackEl.style.color = "red";
+            feedbackEl.textContent = "✖";
+        }
+
+        nextBtn.style.display = "inline-block";
+    }
+
+    inputEl.addEventListener("keyup", (e) => {
+        if (e.key === "Enter") checkAnswer();
+    });
+
+    nextBtn.addEventListener("click", () => {
+        current++;
+        if (current < quizData.length) {
+            loadQuestion();
+        } else {
+            showFinalScore();
+        }
+    });
+
+    function showFinalScore() {
+        qEl.textContent = "Quiz Complete!";
+        cEl.textContent = "";
+        inputEl.style.display = "none";
+        feedbackEl.textContent = "";
+        nextBtn.style.display = "none";
+        dotsEl.innerHTML = "";
+
+        finalEl.textContent = `You scored ${score} / ${quizData.length}!`;
+        fadeIn(finalEl);
+
+        retryBtn.style.display = "inline-block";
+    }
+
+    retryBtn.addEventListener("click", () => {
+        current = 0;
+        score = 0;
+        loadQuestion();
+    });
+
+    loadQuestion();
+    </script>
+
 </body>
 </html>
-
