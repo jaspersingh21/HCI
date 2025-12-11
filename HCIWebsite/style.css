@@ -1,63 +1,88 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
 
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
 
-        header {
-            background-color: #4f4f4f;
-            padding: 20px;
-            color: white;
-            text-align: center;
-        }
+header {
+    background-color: darkblue;   
+    padding: 20px;
+    color: white;
+    text-align: center;
+    border-bottom: 4px solid darkblue; 
+}
 
-        nav {
-            background-color: #444;
-            padding: 10px;
-        }
 
-        nav a {
-            color: white;
-            margin-right: 20px;
-            text-decoration: none;
-            font-weight: bold;
-        }
+nav {
+    background-color: darkblue; 
+    padding: 14px 0;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
 
-        .hero {
-            background: #f0f0f0;
-            padding: 80px 20px;
-            text-align: center;
-        }
+nav a {
+    padding: 10px 18px;
+    background: lightblue;         
+    border-radius: 30px;
+    color: #002b5c;              /* text */
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    transition: 0.3s ease;
+}
 
-        .hero img {
-        width: 50%;     /* Makes the image half the page width */
-        height: auto;   /* Keeps correct proportions */
-        display: block;
-        margin: 0 auto; /* Center the image */
-    }
+nav a:hover,
+nav a:focus {
+    background: #b3d4ff;
+    transform: scale(1.05);
+    outline: none;
+}
 
-        .section {
-            padding: 40px 20px;
-        }
+nav a.active {
+    background: #ffffff;
+    color: #165caa;
+}
 
-        footer {
-            background: #333;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
 
-        .section {
-        width: 50%;              
-        margin: 40px auto;        
-        padding: 30px;            
-        border: 2px solid #cccccc;   
-        border-radius: 25px;   
-        background-color: #f0f0f0;
-        
-        }
+.hero {
+    background: #f0f0f0;
+    padding: 80px 20px;
+    text-align: center;
+}
 
-/* Timeline container */
+.hero img {
+    width: 50%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+/* content sections */
+.section {
+    padding: 40px 20px;
+}
+
+.section {
+    width: 50%;
+    margin: 40px auto;
+    padding: 30px;
+    border: 2px solid #cccccc;
+    border-radius: 25px;
+    background-color: #f0f0f0;
+}
+
+/* footer */
+footer {
+    background: darkblue;        
+    color: white;
+    padding: 20px;
+    text-align: center;
+    border-top: 4px solid darkblue;
+    font-weight: bold;
+}
+
+
 .timeline {
     position: relative;
     max-width: 900px;
@@ -65,7 +90,6 @@
     padding: 0 20px;
 }
 
-/* Vertical line down the middle */
 .timeline::after {
     content: "";
     position: absolute;
@@ -74,30 +98,26 @@
     top: 0;
     bottom: 0;
     left: 50%;
-    transform: translateX(-50%); /* perfect center */
+    transform: translateX(-50%);
 }
 
-/* Event boxes */
 .event {
     position: relative;
-    width: 45%;               /* smaller than 50% so it doesn't cross the line */
+    width: 45%;
     padding: 20px 20px;
     box-sizing: border-box;
 }
 
-/* Left events */
 .event.left {
     left: 0;
     text-align: right;
 }
 
-/* Right events */
 .event.right {
-    left: 55%; /* offset so boxes start just after the line */
+    left: 55%;
     text-align: left;
 }
 
-/* The circle (dot) for each event */
 .event::before {
     content: "";
     position: absolute;
@@ -107,12 +127,11 @@
     border: 4px solid #444;
     border-radius: 50%;
     top: 30px;
-    left: 50%;                 /* always centered on the line */
+    left: 50%;
     transform: translateX(-50%);
     z-index: 2;
 }
 
-/* Event content box */
 .event-box {
     background: white;
     padding: 20px;
@@ -120,13 +139,11 @@
     border: 1px solid #ddd;
 }
 
-/* Titles */
 .event-box h3 {
     margin-top: 0;
     color: #444;
 }
 
-/* Responsive: stack events on mobile */
 @media (max-width: 800px) {
     .event,
     .event.left,
@@ -134,7 +151,7 @@
         width: 100%;
         left: 0;
         text-align: left;
-        padding-left: 40px; /* space for the dot */
+        padding-left: 40px;
     }
 
     .event::before {
@@ -144,19 +161,18 @@
     }
 }
 
-
 .timeline-img {
     width: 100%;
-    max-width: 260px;   
+    max-width: 260px;
     height: auto;
     display: block;
-    margin: 0 auto 12px auto;  
+    margin: 0 auto 12px auto;
     border-radius: 8px;
     border: 1px solid #ccc;
-    object-fit: cover;   
+    object-fit: cover;
 }
 
-
+/* css for crew page  */
 .crew-hero {
     background: url('images/ship-bg.jpg') center/cover no-repeat;
     padding: 80px 20px;
@@ -215,7 +231,7 @@
 .crew-card img {
     width: 100%;
     height: 250px;
-    object-fit: cover;  
+    object-fit: cover;
     border-radius: 12px 12px 0 0;
 }
 
@@ -231,69 +247,54 @@
     color: #555;
 }
 
-nav a.active {
-    background: #555;
-    color: white;
-}
-
-/* ========================================================
-   ACCESSIBILITY SETTINGS – GLOBAL STYLES
-   ======================================================== */
-
-/* Large text */
+/* accessibility  */
 body.large-text { 
     font-size: 18px;
     line-height: 1.7;
-  }
-  
-  /* High contrast */
-  body.high-contrast {
+}
+
+body.high-contrast {
     background: #000 !important;
     color: #fff !important;
-  }
-  
-  body.high-contrast header,
-  body.high-contrast nav,
-  body.high-contrast .container,
-  body.high-contrast .settings-container {
+}
+
+body.high-contrast header,
+body.high-contrast nav,
+body.high-contrast .container,
+body.high-contrast .settings-container {
     background: #000 !important;
     color: #fff !important;
     border-color: #fff !important;
-  }
-  
-  body.high-contrast a {
+}
+
+body.high-contrast a {
     color: #ffeb3b !important;
-  }
-  
-  /* Easy-read mode (extra spacing) */
-  body.easy-read {
+}
+
+body.easy-read {
     letter-spacing: 0.04em;
     line-height: 1.8;
-  }
-  
-  /* Dark mode (more subtle than high contrast) */
-  body.dark-mode {
+}
+
+body.dark-mode {
     background: #1a1a1a;
     color: #e6e6e6;
-  }
-  
-  body.dark-mode .container,
-  body.dark-mode nav,
-  body.dark-mode header {
+}
+
+body.dark-mode .container,
+body.dark-mode nav,
+body.dark-mode header {
     background: #222;
-  }
-  
-  /* Dyslexia-friendly font (OpenDyslexic recommended, fallback included) */
-  body.dyslexia-font {
+}
+
+body.dyslexia-font {
     font-family: "OpenDyslexic", "Arial", sans-serif;
-  }
-  
-  /* Serif font mode */
-  body.serif-font {
+}
+
+body.serif-font {
     font-family: "Georgia", "Times New Roman", serif;
-  }
-  
-  /* Sans-serif font mode */
-  body.sans-font {
+}
+
+body.sans-font {
     font-family: system-ui, "Segoe UI", Arial, sans-serif;
-  }
+}

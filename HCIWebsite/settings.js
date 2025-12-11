@@ -1,6 +1,4 @@
-/* ================================
-   Load previously saved settings
-   ================================ */
+/*  Load previously saved settings */
 
    function applySavedSettings() {
     const settings = JSON.parse(localStorage.getItem("gloucesterSettings") || "{}");
@@ -15,7 +13,7 @@
       document.body.classList.add("high-contrast");
     }
   
-    // Easy read
+    // Easy to read - older user persona link
     if (settings.easyRead) {
       document.body.classList.add("easy-read");
     }
@@ -24,9 +22,7 @@
   /* Run on every page */
   applySavedSettings();
   
-  /* ================================
-     Settings page only: event logic
-     ================================ */
+
   
   if (document.body.classList.contains("settings-page")) {
   
@@ -40,7 +36,7 @@
       localStorage.setItem("gloucesterSettings", JSON.stringify(settings));
     }
   
-    // Attach event listeners only if controls exist
+    // Attach event listeners only if the controls do exist
     const normal = document.getElementById("text-normal");
     const large = document.getElementById("text-large");
     const high = document.getElementById("highContrastToggle");
